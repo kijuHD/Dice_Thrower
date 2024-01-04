@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace DiceThrower.UI
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenu : Menu
     {
+        public override MenuType GetMenuType()
+        {
+            return MenuType.MainMenu;
+        }
+
         [SerializeField]
         private Button _StartButton;
         [SerializeField]
@@ -14,6 +20,16 @@ namespace DiceThrower.UI
         [SerializeField]
         private Button _DiceSetsButton;
 
+
+        [Inject]
+        protected override void ResolveReferences(MenuSystem menuSystem)
+        {
+            base.ResolveReferences(menuSystem);
+        }
+
+        private void Awake()
+        {
+        }
         void Start()
         {
             AddListeners();
@@ -33,7 +49,7 @@ namespace DiceThrower.UI
         }
         private void OnDiceSetsButtonClicked()
         {
-
+            _menuSystem.Show(MenuType.DiceSets);
         }
 
         private void AddListeners()
