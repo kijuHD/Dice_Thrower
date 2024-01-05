@@ -14,6 +14,15 @@ namespace DiceThrower.UI
             Register();
         }
 
+        protected void Start()
+        {
+            AddListeners();
+        }
+        protected void OnDestroy()
+        {
+            RemoveListeners();
+        }
+
         public void Show()
         {
             gameObject.SetActive(true);
@@ -25,8 +34,13 @@ namespace DiceThrower.UI
         public abstract MenuType GetMenuType();
         public virtual void Register()
         {
+            Debug.Log($"Register invoked with menu {GetMenuType()}");
             _menuSystem.RegisterMenu(this);
+            
         }
+
+        protected abstract void AddListeners();
+        protected abstract void RemoveListeners();
 
     }
 }

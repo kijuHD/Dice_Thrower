@@ -4,5 +4,7 @@ namespace DiceThrower.UI
     {
         MainMenu=1,
         DiceSets=2,
+        CreateDiceSet=3,
+        EditDiceSet=4,
     }
 }

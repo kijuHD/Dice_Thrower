@@ -8,13 +8,6 @@ namespace DiceThrower.UI
 {
     public class MenuSystem
     {
-        /*
-         * Add startup hide all and show Main Menu
-         * 
-         * 
-         */
-
-
         private List<IMenu> _availableMenus = new List<IMenu>();
 
         private IMenu _currentMenu;
@@ -22,7 +15,7 @@ namespace DiceThrower.UI
         public void Show(MenuType type)
         {
             var menu = _availableMenus.FirstOrDefault(m => m.GetMenuType() == type);
-            if (menu != null)
+            if (menu == null)
             {
                 throw new Exception($"There is no Menu with Type: {type}");
             }
@@ -33,8 +26,16 @@ namespace DiceThrower.UI
         }
         public void RegisterMenu(IMenu menu)
         {
-            // add check if the same menu exists
-            // check with main menu and if not hide it
+            if(_availableMenus.Any(n => n.GetMenuType() == menu.GetMenuType()))
+            {
+                throw new Exception($"There is already Menu with Type: {menu.GetMenuType()}");
+            }
+
+            if (menu.GetMenuType() != MenuType.MainMenu)
+                menu.Hide();
+            else
+                _currentMenu = menu;
+
             _availableMenus.Add(menu);
         }
     }

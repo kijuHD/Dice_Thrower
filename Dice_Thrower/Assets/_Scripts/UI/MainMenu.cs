@@ -21,22 +21,23 @@ namespace DiceThrower.UI
         private Button _DiceSetsButton;
 
 
-        [Inject]
         protected override void ResolveReferences(MenuSystem menuSystem)
         {
             base.ResolveReferences(menuSystem);
         }
 
-        private void Awake()
+        protected override void AddListeners()
         {
+            _StartButton.onClick.AddListener(OnStartButtonClicked);
+            _QuickStartButton.onClick.AddListener(OnQuickStartButtonClicked);
+            _DiceSetsButton.onClick.AddListener(OnDiceSetsButtonClicked);
+
         }
-        void Start()
+        protected override void RemoveListeners()
         {
-            AddListeners();
-        }
-        private void OnDestroy()
-        {
-            RemoveListeners();
+            _StartButton.onClick.RemoveAllListeners();
+            _QuickStartButton.onClick.RemoveAllListeners();
+            _DiceSetsButton.onClick.RemoveAllListeners();
         }
 
         private void OnStartButtonClicked()
@@ -50,20 +51,6 @@ namespace DiceThrower.UI
         private void OnDiceSetsButtonClicked()
         {
             _menuSystem.Show(MenuType.DiceSets);
-        }
-
-        private void AddListeners()
-        {
-            _StartButton.onClick.AddListener(OnStartButtonClicked);
-            _QuickStartButton.onClick.AddListener(OnQuickStartButtonClicked);
-            _DiceSetsButton.onClick.AddListener(OnDiceSetsButtonClicked);
-
-        }
-        private void RemoveListeners()
-        {
-            _StartButton.onClick.RemoveAllListeners();
-            _QuickStartButton.onClick.RemoveAllListeners();
-            _DiceSetsButton.onClick.RemoveAllListeners();
-        }
+        }        
     }
 }
