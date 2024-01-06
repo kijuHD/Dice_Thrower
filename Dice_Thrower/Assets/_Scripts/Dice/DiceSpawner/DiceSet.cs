@@ -1,28 +1,26 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DiceThrower.Dice
 {
     [CreateAssetMenu(fileName = "DiceSet", menuName = "ScriptableObjects/Dice/DiceSet", order = 1)]
     public class DiceSet : ScriptableObject
     {
-        /*
-         * 
-         * TODO: in future look for better solution
-         * 
-         * serilize dictionary ???
-         * 
-         */
-
         public List<DiceType> Types => _types;
         public List<int> Counts => _counts;
+        public string Name => _name;
+        public bool GetIsQuickStartSet => IsQuickStartSet;
 
         [SerializeField]
         private List<DiceType> _types= new List<DiceType>();
         [SerializeField]
         private List<int>_counts= new List<int>();
+        [SerializeField]
+        private string _name;
+        [SerializeField]
+        private bool IsQuickStartSet;
 
         public DiceSet()
         {

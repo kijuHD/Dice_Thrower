@@ -1,5 +1,5 @@
-using UnityEngine;
 using Zenject;
+using UnityEngine;
 
 namespace DiceThrower.UI
 {
@@ -38,7 +38,6 @@ namespace DiceThrower.UI
             _menuSystem.RegisterMenu(this);
             
         }
-
         protected abstract void AddListeners();
         protected abstract void RemoveListeners();
 

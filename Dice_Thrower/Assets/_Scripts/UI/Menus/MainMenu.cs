@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Zenject;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
+using DiceThrower.Dice;
 
 namespace DiceThrower.UI
 {
@@ -19,6 +18,11 @@ namespace DiceThrower.UI
         private Button _QuickStartButton;
         [SerializeField]
         private Button _DiceSetsButton;
+
+        [Inject]
+        private DiceSpawnerManager _spawnerManager;
+        [Inject]
+        private DiceSetManager _setManager;
 
 
         protected override void ResolveReferences(MenuSystem menuSystem)
@@ -39,14 +43,14 @@ namespace DiceThrower.UI
             _QuickStartButton.onClick.RemoveAllListeners();
             _DiceSetsButton.onClick.RemoveAllListeners();
         }
-
         private void OnStartButtonClicked()
         {
-
         }
         private void OnQuickStartButtonClicked()
         {
-
+            _menuSystem.HideOverlay();
+            _setManager.SelectQuickStartSet();
+            _spawnerManager.SpawnDices();
         }
         private void OnDiceSetsButtonClicked()
         {

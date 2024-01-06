@@ -6,7 +6,7 @@ namespace DiceThrower.UI
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<MenuSystem>().AsSingle();
+            Container.Bind<MenuSystem>().AsSingle();
         }
     }
 }

@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Zenject;
-using System.Diagnostics;
 
 namespace DiceThrower.UI
 {
@@ -12,12 +10,14 @@ namespace DiceThrower.UI
 
         private IMenu _currentMenu;
 
+        private Overlay _uiOverlay;
+
         public void Show(MenuType type)
         {
             var menu = _availableMenus.FirstOrDefault(m => m.GetMenuType() == type);
             if (menu == null)
             {
-                throw new Exception($"There is no Menu with Type: {type}");
+                throw new Exception($"[UI] There is no Menu with Type: {type}");
             }
 
             _currentMenu.Hide();
@@ -28,7 +28,7 @@ namespace DiceThrower.UI
         {
             if(_availableMenus.Any(n => n.GetMenuType() == menu.GetMenuType()))
             {
-                throw new Exception($"There is already Menu with Type: {menu.GetMenuType()}");
+                throw new Exception($"[UI] There is already Menu with Type: {menu.GetMenuType()}");
             }
 
             if (menu.GetMenuType() != MenuType.MainMenu)
@@ -37,6 +37,29 @@ namespace DiceThrower.UI
                 _currentMenu = menu;
 
             _availableMenus.Add(menu);
+        }
+        public void RegisterUIOverlay(Overlay uiOverlay)
+        {
+            _uiOverlay= uiOverlay;
+        }
+        public void HideOverlay()
+        {
+            if (_uiOverlay == null)
+            {
+                throw new Exception($"[UI] Missing UI Overlay reference");
+            }
+            _uiOverlay.gameObject.SetActive( false );
+        }
+        public void ShowOverLay()
+        {
+            if (_uiOverlay == null)
+            {
+                throw new Exception($"[UI] Missing UI Overlay reference");
+            }
+            _uiOverlay.gameObject.SetActive(true);
+
+            if(_currentMenu.GetMenuType()!=MenuType.MainMenu)
+                Show(MenuType.MainMenu);
         }
     }
 }

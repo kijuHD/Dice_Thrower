@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +9,6 @@ public class PopupWindow : MonoBehaviour
     protected Button _CancelButton;
 
 
-
-    // Start is called before the first frame update
     protected void Start()
     {
         AddListeners();

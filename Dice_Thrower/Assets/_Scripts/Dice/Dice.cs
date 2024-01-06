@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 namespace DiceThrower.Dice
 {
@@ -9,22 +8,12 @@ namespace DiceThrower.Dice
 
         protected int _numberOfSides;
 
-        public Dice()
-        {
-        }
-
         public void Select()
-        {
-            /*
-             * TODO: add select method             
-             */
+        {           
         }
 
         public void Throw()
-        {
-            /*
-             * TODO: add Throw method
-             */
+        {           
         }        
     }
 }

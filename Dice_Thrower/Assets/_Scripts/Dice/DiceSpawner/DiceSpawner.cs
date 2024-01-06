@@ -12,7 +12,22 @@ namespace DiceThrower.Dice
             _d6Factory = d6Factory;
             _d12Factory = d12Factory;
         }
+        public void SpawnDicesBasedOnDiceSet(DiceSet diceSet)
+        {
+            if (diceSet == null)
+            {
+                throw new System.Exception("[DICESPAWNER] Dice Set is null");
+            }
+            if (diceSet.Types.Count != diceSet.Counts.Count)
+            {
+                throw new System.Exception("[DICESPAWNER] Count of Types and Counts in Dice Set isn't equal");
+            }
 
+            for (int i = 0; i < diceSet.Types.Count; i++)
+            {
+                CreateDice(diceSet.Types[i], diceSet.Counts[i]);
+            }
+        }
         private void CreateDice(DiceType type, int count)
         {
             switch (type)
@@ -39,19 +54,6 @@ namespace DiceThrower.Dice
             {
                 _d12Factory.Create();
                 Debug.Log("[DICE] D12 created");
-            }
-        }
-
-        public void SpawnDicesBasedOnDiceSet(DiceSet diceSet)
-        {
-            if(diceSet.Types.Count!=diceSet.Counts.Count)
-            {
-                throw new System.Exception("[DICESPAWNER] Count of Types and Counts in Dice Set isn't equal");
-            }
-
-            for(int i=0;i<diceSet.Types.Count;i++)
-            {
-                CreateDice(diceSet.Types[i], diceSet.Counts[i]);
             }
         }
     }

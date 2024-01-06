@@ -12,7 +12,7 @@ namespace DiceThrower.Dice
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<DiceSpawner>().AsSingle();
+            Container.Bind<DiceSpawner>().AsSingle();
             Container.BindFactory<D6, D6.Factory>().FromComponentInNewPrefab(_D6Prefab);
             Container.BindFactory<D12,D12.Factory>().FromComponentInNewPrefab(_D12Prefab);
         }
