@@ -24,16 +24,18 @@ namespace DiceThrower.UI
         }
         protected override void RemoveListeners()
         {
-            throw new System.NotImplementedException();
+            _CreateButton.onClick.RemoveAllListeners();
+            _EditButton.onClick.RemoveAllListeners();
+            _BackButton.onClick.RemoveAllListeners();
         }
 
         private void OnCreateButtonClicked()
         {
-
+            _menuSystem.Show(MenuType.CreateDiceSet);
         }
         private void OnEditButtonClicked() 
-        { 
-
+        {
+            _menuSystem.Show(MenuType.EditDiceSet);
         }
         private void OnBackButtonClicked()
         {

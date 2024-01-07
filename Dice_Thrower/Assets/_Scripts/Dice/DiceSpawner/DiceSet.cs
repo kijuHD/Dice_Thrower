@@ -13,6 +13,14 @@ namespace DiceThrower.Dice
         public string Name => _name;
         public bool GetIsQuickStartSet => IsQuickStartSet;
 
+
+        /*
+         * 
+         * After create and edit set will be complited
+         * switch to dictionary
+         * 
+         */
+
         [SerializeField]
         private List<DiceType> _types= new List<DiceType>();
         [SerializeField]
@@ -30,5 +38,12 @@ namespace DiceThrower.Dice
                 _counts.Add(0);
             }
         }
+        public void Edit(string name, int d6Number, int d12Number)
+        {
+            _name= name;
+            _counts[0] = d6Number;
+            _counts[1] = d12Number;
+        }
+
     }
 }
