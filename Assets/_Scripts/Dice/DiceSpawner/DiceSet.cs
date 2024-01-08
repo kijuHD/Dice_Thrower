@@ -11,16 +11,16 @@ namespace DiceThrower.Dice
         public List<DiceType> Types => _types;
         public List<int> Counts => _counts;
         public string Name => _name;
-        public bool GetIsQuickStartSet => IsQuickStartSet;
+        public bool IsQuickStartSet => _isQuickStartSet;
 
         [SerializeField]
-        private List<DiceType> _types= new List<DiceType>();
+        private List<DiceType> _types = new List<DiceType>();
         [SerializeField]
-        private List<int>_counts= new List<int>();
+        private List<int> _counts = new List<int>();
         [SerializeField]
         private string _name;
         [SerializeField]
-        private bool IsQuickStartSet;
+        private bool _isQuickStartSet;
 
         public DiceSet()
         {

@@ -21,7 +21,7 @@ namespace DiceThrower.Dice
         }
         public void SelectQuickStartSet()
         {
-            var set = _setsCollection.Sets.FirstOrDefault(s => s.GetIsQuickStartSet);
+            var set = _setsCollection.Sets.FirstOrDefault(s => s.IsQuickStartSet);
             if (set == null)
             {
                 throw new System.Exception($"[DICESET] There is no quick start set in collection");

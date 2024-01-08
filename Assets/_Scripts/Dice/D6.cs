@@ -6,8 +6,8 @@ namespace DiceThrower.Dice
     {
         public D6()
         {
-            _numberOfSides= 6;
-        }           
+            _numberOfSides = 6;
+        }
         public class Factory : PlaceholderFactory<D6> { }
     }
 }

@@ -11,7 +11,7 @@ namespace DiceThrower.Dice
 
         public void SpawnDices()
         {
-            _diceSpawner.SpawnDicesBasedOnDiceSet(_diceSetManager.ActiveSet);
+            _diceSpawner.SpawnDices(_diceSetManager.ActiveSet);
         }
     }
 }

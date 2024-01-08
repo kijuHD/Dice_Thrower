@@ -15,4 +15,4 @@ MonoBehaviour:
   _types: 0100000002000000
   _counts: 0200000003000000
   _name: Quick Start Set
-  IsQuickStartSet: 1
+  _isQuickStartSet: 1
