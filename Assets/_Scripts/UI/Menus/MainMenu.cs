@@ -13,11 +13,8 @@ namespace DiceThrower.UI
         }
 
         [SerializeField]
-        private Button _StartButton;
-        [SerializeField]
-        private Button _QuickStartButton;
-        [SerializeField]
-        private Button _DiceSetsButton;
+        private Button _quickStartButton;
+
 
         [Inject]
         private DiceSpawnerManager _spawnerManager;
@@ -32,19 +29,14 @@ namespace DiceThrower.UI
 
         protected override void AddListeners()
         {
-            _StartButton.onClick.AddListener(OnStartButtonClicked);
-            _QuickStartButton.onClick.AddListener(OnQuickStartButtonClicked);
-            _DiceSetsButton.onClick.AddListener(OnDiceSetsButtonClicked);
+            base.AddListeners();
+            _quickStartButton.onClick.AddListener(OnQuickStartButtonClicked);
 
         }
         protected override void RemoveListeners()
         {
-            _StartButton.onClick.RemoveAllListeners();
-            _QuickStartButton.onClick.RemoveAllListeners();
-            _DiceSetsButton.onClick.RemoveAllListeners();
-        }
-        private void OnStartButtonClicked()
-        {
+            base.RemoveListeners();
+            _quickStartButton.onClick.RemoveAllListeners();
         }
         private void OnQuickStartButtonClicked()
         {
@@ -52,9 +44,5 @@ namespace DiceThrower.UI
             _setManager.SelectQuickStartSet();
             _spawnerManager.SpawnDices();
         }
-        private void OnDiceSetsButtonClicked()
-        {
-            _menuSystem.Show(MenuType.DiceSets);
-        }        
     }
 }

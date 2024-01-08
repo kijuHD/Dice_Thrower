@@ -6,11 +6,9 @@ namespace DiceThrower.UI
     public class DiceSetsMenu : Menu
     {
         [SerializeField]
-        private Button _CreateButton;
+        private Button _createButton;
         [SerializeField]
-        private Button _EditButton;
-        [SerializeField]
-        private Button _BackButton;
+        private Button _editButton;
 
         public override MenuType GetMenuType()
         {
@@ -18,26 +16,24 @@ namespace DiceThrower.UI
         }
         protected override void AddListeners()
         {
-            _CreateButton.onClick.AddListener(OnCreateButtonClicked);
-            _EditButton.onClick.AddListener(OnEditButtonClicked);
-            _BackButton.onClick.AddListener(OnBackButtonClicked);
+            base.AddListeners();
+            _createButton.onClick.AddListener(OnCreateButtonClicked);
+            _editButton.onClick.AddListener(OnEditButtonClicked);
         }
         protected override void RemoveListeners()
         {
-            throw new System.NotImplementedException();
+            base.RemoveListeners();
+            _createButton.onClick.RemoveAllListeners();
+            _editButton.onClick.RemoveAllListeners();
         }
 
         private void OnCreateButtonClicked()
         {
 
         }
-        private void OnEditButtonClicked() 
-        { 
-
-        }
-        private void OnBackButtonClicked()
+        private void OnEditButtonClicked()
         {
-            _menuSystem.Show(MenuType.MainMenu);
+
         }
     }
 }

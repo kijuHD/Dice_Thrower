@@ -1,11 +1,15 @@
 using Zenject;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace DiceThrower.UI
 {
     public abstract class Menu : MonoBehaviour, IMenu
     {
         protected MenuSystem _menuSystem;
+
+        [SerializeField]
+        private List<MenuButton> _menuButtons = new List<MenuButton>();
 
         [Inject]
         protected virtual void ResolveReferences(MenuSystem menuSystem)
@@ -36,10 +40,22 @@ namespace DiceThrower.UI
         {
             Debug.Log($"Register invoked with menu {GetMenuType()}");
             _menuSystem.RegisterMenu(this);
-            
+
         }
-        protected abstract void AddListeners();
-        protected abstract void RemoveListeners();
+        protected virtual void AddListeners()
+        {
+            foreach (MenuButton button in _menuButtons)
+            {
+                button.Button.onClick.AddListener(() => _menuSystem.Show(button.MenuType));
+            }
+        }
+        protected virtual void RemoveListeners()
+        {
+            foreach (MenuButton button in _menuButtons)
+            {
+                button.Button.onClick.RemoveAllListeners();
+            }
+        }
 
     }
 }
